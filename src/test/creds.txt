@@ -1,0 +1,9 @@
+doctorpatientportal creds:
+
+Patient:
+j.doe@mail.com
+qwerty
+
+Doctor:
+m.smith@gmail.com
+qazwsx

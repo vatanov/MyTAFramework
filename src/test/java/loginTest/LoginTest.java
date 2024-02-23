@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
@@ -16,13 +17,13 @@ public class LoginTest {
     @Test
     public void validLogin() {
         // Set up Chrome
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().clearDriverCache().setup();
         // Set webdriver to work with Chrome
         webDriver = new ChromeDriver();
         // Maximize Chrome window
         webDriver.manage().window().maximize();
         // Set waiting for 5 seconds
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         System.out.println("Browser is opened");
         // open link
         webDriver.get("http://192.168.64.3/doctorpatientportal/help.php");

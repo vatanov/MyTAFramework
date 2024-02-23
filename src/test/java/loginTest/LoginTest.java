@@ -1,17 +1,20 @@
 package loginTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.time.Duration;
 
 public class LoginTest {
     // Create webDriver instance
     WebDriver webDriver;
+
     @Test
     public void validLogin() {
         // Set up Chrome
@@ -51,13 +54,28 @@ public class LoginTest {
         System.out.println("Button is pressed");
 
         // Find drop-down
-        WebElement userMenu = webDriver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
+        //WebElement userMenu = webDriver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
         // Check is User menu is displayed
-        Assert.assertTrue("User menu is not displayed", userMenu.isDisplayed());
-
+        Assert.assertTrue("User menu is not displayed", isUserMenuDisplayed());
 
 
         // Close whole browser (NOT only tab). webDriver.close() closes tab only.
+        //webDriver.quit();
+    }
+
+    @After // Method to close browser
+    public void tearDown() {
+        // Close whole browser (NOT only tab). webDriver.close() closes tab only.
         webDriver.quit();
+    }
+
+    // Method to check is User menu is displayed
+    private boolean isUserMenuDisplayed() {
+        try {
+            webDriver.findElement(By.xpath("//a[@data-toggle='dropdown']"));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

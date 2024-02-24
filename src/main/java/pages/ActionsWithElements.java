@@ -3,12 +3,15 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
+        // Initialize all web elements in this and child classes
+        PageFactory.initElements(webDriver, this); // elements with @FindBy annotation
     }
 
     public void openPage(String url) {
@@ -48,6 +51,10 @@ public class ActionsWithElements {
             printErrorAndStopTest(e);
             return false;
         }
+    }
+
+    public void checkElementDisplayed(WebElement element) {
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
     }
 
     private void printErrorAndStopTest(Exception e) {

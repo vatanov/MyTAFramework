@@ -32,6 +32,11 @@
       <artifactId>webdrivermanager</artifactId>
       <version>5.6.3</version>
     </dependency>
-
+    <!-- https://mvnrepository.com/artifact/log4j/Log41 -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
   </dependencies>
 </project>

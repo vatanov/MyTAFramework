@@ -1,41 +1,35 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 public class ActionsWithElements {
+    Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
-    }
-
-    public void openPage(String url) {
-        try {
-            webDriver.get(url);
-            System.out.println("Page is opened" + url);
-        } catch (Exception e) {
-            System.out.println("Can not open URL" + url);
-            // If we can not open page, we do not need to continue our test
-            Assert.fail("Can not open URL" + url);
-        }
+        // Initialize all web elements in this and child classes
+        PageFactory.initElements(webDriver, this); // elements with @FindBy annotation will be initialized here
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
         try {
             input.clear();
             input.sendKeys(text);
-            System.out.println(text + " was inputted into input");
+            logger.info(text + " was inputted into input");
         } catch (Exception e) {
-            printErrorAndStopTest(e);
+            logger.error("Cannot input text into input. " + e);
         }
     }
 
     public void clickOnElement(WebElement element) {
         try {
             element.click();
-            System.out.println("Element was clicked");
+            logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -43,16 +37,26 @@ public class ActionsWithElements {
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            return element.isDisplayed();
+            boolean state = element.isDisplayed();
+            if (state) {
+                logger.info("Element is displayed");
+            } else {
+                logger.info("Element is not displayed");
+            }
+            return state;
         } catch (Exception e) {
             printErrorAndStopTest(e);
             return false;
         }
     }
 
+    public void checkElementDisplayed(WebElement element) {
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+
     private void printErrorAndStopTest(Exception e) {
-        System.out.println("Can not work with element" + e);
+        logger.error("Can not work with element. " + e);
         // If we can not work with element, we do not need to continue our test
-        Assert.fail("Can not work with element" + e);
+        Assert.fail("Can not work with element. " + e);
     }
 }

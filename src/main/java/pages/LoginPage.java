@@ -36,7 +36,7 @@ public class LoginPage extends ParentPage{
         enterTextIntoInput(inputPassword, password);
     }
 
-    public void clickLoginButton() {
+    public void clickLoginButtonInModal() {
         clickOnElement(loginButtonInModal);
     }
 

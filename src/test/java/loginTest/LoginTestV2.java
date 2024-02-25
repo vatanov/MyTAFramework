@@ -9,7 +9,7 @@ public class LoginTestV2 extends baseTest.BaseTest{
         pageProvider.getLoginPage().clickLoginButtonInHeader();
         pageProvider.getLoginPage().enterEmail("j.doe@mail.com");
         pageProvider.getLoginPage().enterPassword("qwerty");
-        pageProvider.getLoginPage().clickLoginButton();
+        pageProvider.getLoginPage().clickLoginButtonInModal();
 
         //TODO: Add assertion
     }

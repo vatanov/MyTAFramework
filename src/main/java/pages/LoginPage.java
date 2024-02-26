@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends ParentPage{
-    @FindBy(xpath = "//a[@data-target='#login']")
-    private WebElement loginButton;
+public class LoginPage extends ParentPageWithHeader{
 
     @FindBy(xpath = "//div[@class='modal fade in']//input[@placeholder='Enter your email']")
     private WebElement inputEmail;
@@ -16,9 +14,6 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = "//div[@class='modal fade in']//input[@value='Login']")
     private WebElement loginButtonInModal;
-
-    @FindBy(xpath = "//a[@data-target='#login']")
-    private WebElement loginButtonInHeader;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -38,9 +33,5 @@ public class LoginPage extends ParentPage{
 
     public void clickLoginButtonInModal() {
         clickOnElement(loginButtonInModal);
-    }
-
-    public void clickLoginButtonInHeader() {
-        clickOnElement(loginButtonInHeader);
     }
 }

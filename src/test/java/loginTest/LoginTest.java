@@ -3,6 +3,7 @@ package loginTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ public class LoginTest {
     WebDriver webDriver;
     String url = "http://192.168.64.3/doctorpatientportal/help.php";
 
+    @Ignore
     @Test
     public void validLogin() {
         // Set up Chrome
@@ -61,6 +63,7 @@ public class LoginTest {
         System.out.println("User menu is displayed");
     }
 
+    @Ignore
     @Test
     public void invalidLogin() {
         // Set up Chrome

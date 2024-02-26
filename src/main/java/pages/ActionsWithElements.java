@@ -45,13 +45,17 @@ public class ActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            printErrorAndStopTest(e);
+            logger.info("Element is not displayed");
             return false;
         }
     }
 
     public void checkElementDisplayed(WebElement element) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(element));
+    }
+
+    public void checkElementNotDisplayed(WebElement element) {
+        Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
     private void printErrorAndStopTest(Exception e) {

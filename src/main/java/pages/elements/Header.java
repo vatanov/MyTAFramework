@@ -101,8 +101,9 @@ public class Header extends ActionsWithElements {
         clickOnElement(registerButton);
     }
 
-    public void clickDropdownMenu() {
+    public Header clickDropdownMenu() {
         clickOnElement(dropdownMenu);
+        return this;
     }
 
     public PatientDashboardPage clickYourDashboard() {

@@ -20,4 +20,12 @@ public class PageProvider {
     public LogoutPage getLogoutPage() {
         return new LogoutPage(webDriver);
     }
+
+    public PatientDashboardPage getPatientDashboardPage() {
+        return new PatientDashboardPage(webDriver);
+    }
+
+    public AlertHandler getAlertHandler() {
+        return new AlertHandler(webDriver);
+    }
 }

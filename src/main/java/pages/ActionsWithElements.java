@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
@@ -23,6 +24,28 @@ public class ActionsWithElements {
             logger.info(text + " was inputted into input");
         } catch (Exception e) {
             logger.error("Cannot input text into input. " + e);
+        }
+    }
+
+    public void selectByVisibleTextInDropdown(WebElement element, String text) {
+        try {
+            Thread.sleep(500);
+            Select select = new Select(element);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in dropdown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void selectByValueInDropdown(WebElement element, String value) {
+        try {
+            Thread.sleep(500);
+            Select select = new Select(element);
+            select.selectByValue(value);
+            logger.info(value + " was selected in dropdown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ActionsWithElements;
+import pages.PatientDashboardPage;
 
 public class Header extends ActionsWithElements {
     @FindBy(xpath = "//img[@class='logomain']")
@@ -29,6 +30,9 @@ public class Header extends ActionsWithElements {
 
     @FindBy(xpath = "//a[@data-toggle='dropdown']")
     private WebElement dropdownMenu;
+
+    @FindBy(xpath = "//a[@href='patient.php']")
+    private WebElement yourDashboard;
 
     @FindBy(xpath = "//a[@href='logout.php']")
     private WebElement logoutButton;
@@ -99,6 +103,11 @@ public class Header extends ActionsWithElements {
 
     public void clickDropdownMenu() {
         clickOnElement(dropdownMenu);
+    }
+
+    public PatientDashboardPage clickYourDashboard() {
+        clickOnElement(yourDashboard);
+        return new PatientDashboardPage(webDriver);
     }
 
     public void clickLogout() {

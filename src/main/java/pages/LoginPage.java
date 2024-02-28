@@ -3,6 +3,10 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.Header;
+
+import static data.TestData.LOGIN_DEFAULT;
+import static data.TestData.PASSWORD_DEFAULT;
 
 public class LoginPage extends ParentPageWithHeader{
 
@@ -33,5 +37,13 @@ public class LoginPage extends ParentPageWithHeader{
 
     public void clickLoginButtonInModal() {
         clickOnElement(loginButtonInModal);
+    }
+
+    public void loginWithValidCreds() {
+        openLoginPage();
+        getHeader().clickLoginButton();
+        enterEmail(LOGIN_DEFAULT);
+        enterPassword(PASSWORD_DEFAULT);
+        clickLoginButtonInModal();
     }
 }

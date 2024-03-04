@@ -54,8 +54,8 @@ public class AlertHandler extends ActionsWithElements {
         return this;
     }
 
-    public AlertHandler checkAlertTextPresent(String text) {
-        Assert.assertTrue("Alert text is not present.", this.isAlertTextPresent(text));
+    public AlertHandler checkTextInAlert(String text) {
+        Assert.assertEquals("Alert text is not as expected.", text, this.getAlertText());
         return this;
     }
 }

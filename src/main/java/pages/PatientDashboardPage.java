@@ -1,8 +1,12 @@
 package pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class PatientDashboardPage extends ParentPageWithHeader{
     public PatientDashboardPage(WebDriver webDriver) {
@@ -21,6 +25,9 @@ public class PatientDashboardPage extends ParentPageWithHeader{
     @FindBy(xpath = "//a[@href='#compose']")
     private WebElement msgrComposeButton;
 
+    @FindBy(xpath = "//a[@href='#sent']")
+    private WebElement msgrSentButton;
+
     // Messenger elements:
     @FindBy(xpath = "//select[@name='doccat2']")
     private WebElement msgrDoctorTypeDropdown;
@@ -36,6 +43,12 @@ public class PatientDashboardPage extends ParentPageWithHeader{
 
     @FindBy(xpath = "//input[@value='Send']")
     private WebElement msgrSendButton;
+
+    /**
+     * Defines the locator for the message subject in the sent messages list if text is changeable each time
+     * Unique text should be passed to the method as a parameter and will be replaced with %s in the locator
+     */
+    private String msgrSubjectLocator = "//*[text()='%s']";
 
     public PatientDashboardPage checkIsPayForAppointmentButtonDisplayed() {
         checkElementDisplayed(payForAppointmentButton);
@@ -54,6 +67,11 @@ public class PatientDashboardPage extends ParentPageWithHeader{
 
     public PatientDashboardPage msgrClickComposeButton() {
         clickOnElement(msgrComposeButton);
+        return this;
+    }
+
+    public PatientDashboardPage msgrClickSentButton() {
+        clickOnElement(msgrSentButton);
         return this;
     }
 
@@ -85,6 +103,23 @@ public class PatientDashboardPage extends ParentPageWithHeader{
         //TODO check URL
         //TODO check some unique elements
         checkIsPayForAppointmentButtonDisplayed();
+        return this;
+    }
+
+    /**
+     * Returns list of sent messages with the same subject
+     */
+    private List<WebElement> msgrGetSentMessagesList(String subject) {
+        return webDriver.findElements(By.xpath(String.format(msgrSubjectLocator, subject))); // subjectLocator.replace("%s", subject)
+    }
+
+    /**
+     * Verifies that sent message is present in the list and only one message is present
+     */
+    public PatientDashboardPage msgrCheckSentMsgIsPresent(String subject) {
+        Assert.assertEquals("Count of sent messages is " + subject, 1,
+                msgrGetSentMessagesList(subject).size());
+
         return this;
     }
 }

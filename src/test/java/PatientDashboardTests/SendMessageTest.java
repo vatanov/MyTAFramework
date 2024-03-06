@@ -20,6 +20,7 @@ public class SendMessageTest extends BaseTest {
 
         pageProvider.getPatientDashboardPage()
                 .clickMessengerButton()
+                // TODO: Add verification if Message tab is opened
                 .msgrClickComposeButton()
                 .msgrSetDoctorTypeDropdown(DENTIST)
                 .msgrSetDoctorNameDropdown(DOC_MARK_SMITH)
@@ -31,5 +32,16 @@ public class SendMessageTest extends BaseTest {
                 .checkAlertPresent()
                 .checkTextInAlert("Message Sent Successfully")
                 .acceptAlert();
+
+        pageProvider.getPatientDashboardPage()
+                .checkIsRedirectedToPatientDashboard()
+                .clickMessengerButton()
+                // TODO: Add verification if Message tab is opened
+                .msgrClickSentButton()
+                .msgrCheckSentMsgIsPresent(subject)
+
+        ;
     }
+
+    // TODO: Add add @After method to delete sent message in DB
 }

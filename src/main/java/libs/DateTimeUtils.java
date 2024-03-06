@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Util {
+public class DateTimeUtils {
     public static void waitABit(Integer second) {
         try {
             Thread.sleep(second * 1000L);

@@ -1,15 +1,17 @@
 package PatientDashboardTests;
 
 import baseTest.BaseTest;
-import libs.Util;
+import libs.DateTimeUtils;
+import libs.DbUtils;
+import org.junit.After;
 import org.junit.Test;
 
 import static data.TestData.DENTIST;
 import static data.TestData.DOC_MARK_SMITH;
 
 public class SendMessageTest extends BaseTest {
-    private final String subject = "TC-01 - Message " + Util.getDateAndTimeFormatted();
-    private final String message = "TC-01 - New Message Body " + Util.getDateAndTimeFormatted();
+    private final String subject = "TC-01 - Message " + DateTimeUtils.getDateAndTimeFormatted();
+    private final String message = "TC-01 - New Message Body " + DateTimeUtils.getDateAndTimeFormatted();
     @Test
     public void sendMessage() {
         pageProvider.getHomePage().openHomePage()
@@ -38,10 +40,12 @@ public class SendMessageTest extends BaseTest {
                 .clickMessengerButton()
                 // TODO: Add verification if Message tab is opened
                 .msgrClickSentButton()
-                .msgrCheckSentMsgIsPresent(subject)
-
-        ;
+                .msgrCheckSentMsgIsPresent(subject);
     }
 
-    // TODO: Add add @After method to delete sent message in DB
+    @After
+    public void deleteSentMessage() {
+        DbUtils dbUtils = new DbUtils();
+        dbUtils.executeQueryWithoutResult(String.format("DELETE FROM sentmsg WHERE subject = '%s';", subject));
+    }
 }

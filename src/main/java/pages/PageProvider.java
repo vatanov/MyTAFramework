@@ -28,4 +28,8 @@ public class PageProvider {
     public AlertHandler getAlertHandler() {
         return new AlertHandler(webDriver);
     }
+
+    public ContactUsPage getContactUsPage() {
+        return new ContactUsPage(webDriver);
+    }
 }

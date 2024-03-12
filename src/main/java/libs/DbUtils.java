@@ -19,6 +19,9 @@ public class DbUtils {
         }
     }
 
+    /**
+     * This method is used to execute SELECT query and other queries that return ResultSet
+     */
     public ResultSet executeQueryAndGetResult(String query) {
         try {
             Statement statement = this.connection.createStatement();
@@ -34,6 +37,9 @@ public class DbUtils {
         }
     }
 
+    /**
+    * This method is used to execute DELETE or CREATE query
+     */
     public void executeQueryWithoutResult(String query) {
         try {
             Statement statement = this.connection.createStatement();

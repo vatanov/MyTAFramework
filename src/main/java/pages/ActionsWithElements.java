@@ -14,7 +14,7 @@ import java.time.Duration;
 public class ActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
-    protected WebDriverWait webDriverWait5, getWebDriverWait10;
+    protected WebDriverWait webDriverWait5, webDriverWait10;
 
     public ActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -22,7 +22,7 @@ public class ActionsWithElements {
         PageFactory.initElements(webDriver, this); // elements with @FindBy annotation will be initialized here
         // Initialize webDriverWaits to wait for element if it is not immediately available
         webDriverWait5 = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        getWebDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {
@@ -93,5 +93,14 @@ public class ActionsWithElements {
         logger.error("Can not work with element. " + e);
         // If we can not work with element, we do not need to continue our test
         Assert.fail("Can not work with element. " + e);
+    }
+
+    public void checkIfElementContainsText(WebElement element, String text) {
+        try {
+            Assert.assertTrue("Text is not found", element.getText().contains(text));
+            logger.info("Text is found");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 }

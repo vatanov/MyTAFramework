@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 
 abstract public class ParentPage extends ActionsWithElements{
-
     Logger logger = Logger.getLogger(getClass());
     final String BASE_URL = "http://192.168.64.4/doctorpatientportal";
     public ParentPage(WebDriver webDriver) {

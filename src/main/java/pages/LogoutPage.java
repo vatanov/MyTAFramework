@@ -13,6 +13,11 @@ public class LogoutPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/logout.php";
+    }
+
     public void CheckIsSeeYouSoonMessageDisplayed() {
         isElementDisplayed(seeYouSoonMessage);
     }

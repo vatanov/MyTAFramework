@@ -9,7 +9,7 @@ public class DbUtils {
 
     public DbUtils() {
         try {
-            String DB_URL = "jdbc:mysql://192.168.64.3:3306/dpp";
+            String DB_URL = "jdbc:mysql://192.168.64.4:3306/dpp";
             String DB_USER = "root";
             String DB_PASSWORD = "";
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

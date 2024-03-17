@@ -7,6 +7,11 @@ public class HomePage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/index.php";
+    }
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.loginWithValidCreds();
@@ -16,7 +21,7 @@ public class HomePage extends ParentPageWithHeader {
     }
 
     public HomePage checkIsRedirectedToHomePage() {
-        //TODO check URL
+        checkUrl();
         //TODO check some unique elements
         getHeader().checkIsDropdownMenuDisplayed();
         return this;

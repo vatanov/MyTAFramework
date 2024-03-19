@@ -1,5 +1,6 @@
 package loginTest;
 
+import libs.ConfigProvider;
 import org.junit.Test;
 
 import static data.TestData.LOGIN_DEFAULT;

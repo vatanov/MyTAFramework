@@ -4,11 +4,17 @@ import org.aeonbits.owner.Config;
 
 @Config.Sources(value = "file:./src/main/resources/config.properties")
 public interface ConfigProperties extends Config {
+	// Doctor patient portal properties
+	String base_url();
+	String db_url();
+	String db_user();
+	String db_password();
+
+	// Some properties from the course
 	long TIME_FOR_DEFAULT_WAIT();
 	long TIME_FOR_EXPLICIT_WAIT_LOW();
 	long TIME_FOR_EXPLICIT_WAIT_HIGH();
 
-	String base_url();
 	String DATA_FILE();
 	String DATA_FILE_PATH();
 	String Oracle();

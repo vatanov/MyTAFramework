@@ -5,9 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 import org.apache.log4j.Logger;
 
+import static libs.ConfigProvider.configProperties;
+
 abstract public class ParentPage extends ActionsWithElements{
     Logger logger = Logger.getLogger(getClass());
-    final String BASE_URL = "http://192.168.64.4/doctorpatientportal";
+    final String BASE_URL = configProperties.base_url();
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }

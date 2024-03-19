@@ -23,8 +23,13 @@ public class LoginPage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/help.php";
+    }
     public void openLoginPage() {
-        openPage(BASE_URL);
+        openPage(BASE_URL + "/help.php");
+        checkUrl();
     }
 
     public void enterEmail(String email) {

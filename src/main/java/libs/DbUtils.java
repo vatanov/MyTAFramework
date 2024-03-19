@@ -1,7 +1,10 @@
 package libs;
 
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import java.sql.*;
+
+import static libs.ConfigProvider.configProperties;
 
 public class DbUtils {
     Logger logger = Logger.getLogger(getClass());
@@ -9,9 +12,9 @@ public class DbUtils {
 
     public DbUtils() {
         try {
-            String DB_URL = "jdbc:mysql://192.168.64.3:3306/dpp";
-            String DB_USER = "root";
-            String DB_PASSWORD = "";
+            String DB_URL = configProperties.db_url();
+            String DB_USER = configProperties.db_user();
+            String DB_PASSWORD = configProperties.db_password();
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             logger.info("Connection to DB is successful");
         } catch (SQLException e) {

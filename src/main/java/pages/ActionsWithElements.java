@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -21,8 +22,8 @@ public class ActionsWithElements {
         // Initialize all web elements in this and child classes
         PageFactory.initElements(webDriver, this); // elements with @FindBy annotation will be initialized here
         // Initialize webDriverWaits to wait for element if it is not immediately available
-        webDriverWait5 = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait5 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
     }
 
     public void enterTextIntoInput(WebElement input, String text) {

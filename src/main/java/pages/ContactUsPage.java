@@ -18,6 +18,11 @@ public class ContactUsPage extends ParentPageWithHeader {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/contact.php";
+    }
+
     @FindBy(xpath = "//td[contains(text(), 'Email')]")
     private WebElement emailLabel;
 
@@ -52,6 +57,7 @@ public class ContactUsPage extends ParentPageWithHeader {
     }
 
     private ContactUsPage checkIsRedirectedToContactUsPage() {
+        checkUrl();
         checkIsContactUsPageDisplayed();
         return this;
     }

@@ -13,6 +13,11 @@ public class PatientDashboardPage extends ParentPageWithHeader{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/patient.php";
+    }
+
     @FindBy(xpath = "//a[@href='#papt']")
     private WebElement payForAppointmentButton;
 
@@ -100,7 +105,7 @@ public class PatientDashboardPage extends ParentPageWithHeader{
     }
 
     public PatientDashboardPage checkIsRedirectedToPatientDashboard() {
-        //TODO check URL
+        checkUrl();
         //TODO check some unique elements
         checkIsPayForAppointmentButtonDisplayed();
         return this;

@@ -25,10 +25,10 @@ public class LoginPage extends ParentPageWithHeader{
 
     @Override
     protected String getRelativeUrl() {
-        return "/help.php";
+        return "/index.php";
     }
     public void openLoginPage() {
-        openPage(BASE_URL + "/help.php");
+        openPage(BASE_URL + "/index.php");
         checkUrl();
     }
 

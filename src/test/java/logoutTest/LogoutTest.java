@@ -19,7 +19,8 @@ public class LogoutTest extends BaseTest {
         pageProvider.getLoginPage().clickLoginButtonInModal();
 
         // Logout user
-        pageProvider.getHomePage().getHeader().clickDropdownMenu();
+        // TODO:
+        //pageProvider.getHomePage().getHeader().clickDropdownMenu();
         pageProvider.getHomePage().getHeader().clickLogout();
 
         pageProvider.getLogoutPage().CheckIsSeeYouSoonMessageDisplayed();

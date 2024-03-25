@@ -12,9 +12,14 @@ public class HomePage extends ParentPageWithHeader {
         return "/index.php";
     }
 
-    public HomePage openHomePage() {
+    public HomePage openHomePageAndLogin() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.loginWithValidCreds();
+        openHomePage();
+        return this;
+    }
+
+    public HomePage openHomePage() {
         getHeader().clickHomeButton();
         checkIsRedirectedToHomePage();
         return this;

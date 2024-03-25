@@ -14,7 +14,7 @@ public class SendMessageTest extends BaseTest {
     private final String message = "TC-01 - New Message Body " + DateTimeUtils.getDateAndTimeFormatted();
     @Test
     public void sendMessage() {
-        pageProvider.getHomePage().openHomePage()
+        pageProvider.getHomePage().openHomePageAndLogin()
                 .getHeader()
                 .clickDropdownMenu()
                 .clickYourDashboard()

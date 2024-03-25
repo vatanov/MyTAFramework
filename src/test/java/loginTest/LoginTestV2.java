@@ -1,6 +1,5 @@
 package loginTest;
 
-import libs.ConfigProvider;
 import org.junit.Test;
 
 import static data.TestData.LOGIN_DEFAULT;
@@ -15,6 +14,7 @@ public class LoginTestV2 extends baseTest.BaseTest{
         pageProvider.getLoginPage().enterPassword(PASSWORD_DEFAULT);
         pageProvider.getLoginPage().clickLoginButtonInModal();
 
+        pageProvider.getHomePage().openHomePage();
         pageProvider.getHomePage().getHeader().checkIsLogoDisplayed();
         pageProvider.getHomePage().getHeader().checkIsHomeButtonDisplayed();
         pageProvider.getHomePage().getHeader().checkIsAboutButtonDisplayed();

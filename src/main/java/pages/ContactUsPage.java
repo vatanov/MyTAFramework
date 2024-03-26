@@ -49,6 +49,11 @@ public class ContactUsPage extends ParentPageWithHeader {
     @FindBy(xpath = alertMessageXpath)
     private WebElement alertMessage;
 
+    private final String successMessageXpath = "//div[@class='alert alert-success']";
+
+    @FindBy(xpath = successMessageXpath)
+    private WebElement successMessage;
+
     public ContactUsPage openContactUsPage() {
         openPage(BASE_URL);
         getHeader().clickContactButton();
@@ -96,6 +101,16 @@ public class ContactUsPage extends ParentPageWithHeader {
 
     public ContactUsPage checkTextInAlertMessage(String text) {
         checkIfElementContainsText(alertMessage, text);
+        return this;
+    }
+
+    public ContactUsPage checkIsSuccessMessageDisplayed() {
+        checkElementDisplayed(successMessage);
+        return this;
+    }
+
+    public ContactUsPage checkTextInSuccessMessage(String text) {
+        checkIfElementContainsText(successMessage, text);
         return this;
     }
 

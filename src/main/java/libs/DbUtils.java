@@ -1,6 +1,5 @@
 package libs;
 
-import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import java.sql.*;
 

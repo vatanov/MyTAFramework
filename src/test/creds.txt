@@ -4,6 +4,9 @@ Patient:
 j.doe@mail.com
 qwerty
 
+mdoe@mail.com
+12345678
+
 Doctor:
 m.smith@gmail.com
 qazwsx

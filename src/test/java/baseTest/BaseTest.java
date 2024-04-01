@@ -26,7 +26,7 @@ public class BaseTest {
 
     @Before
     public void setUp() {
-        logger.info("\n");
+        logger.info("=================================================================");
         logger.info("=====> Setup for Test " + testName.getMethodName() + " is started");
         //WebDriverManager.chromedriver().clearDriverCache().setup();
         //webDriver = new ChromeDriver();

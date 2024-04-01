@@ -31,7 +31,7 @@ public class ActionsWithElements {
         try {
             input.clear();
             input.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into input " + getElementName(input));
         } catch (Exception e) {
             logger.error("Cannot input text into input. " + e);
         }
@@ -42,7 +42,7 @@ public class ActionsWithElements {
             Thread.sleep(500);
             Select select = new Select(element);
             select.selectByVisibleText(text);
-            logger.info(text + " was selected in dropdown");
+            logger.info(text + " was selected in dropdown " + getElementName(element));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -53,7 +53,7 @@ public class ActionsWithElements {
             webDriverWait5.until(ExpectedConditions.elementToBeClickable(element));
             Select select = new Select(element);
             select.selectByValue(value);
-            logger.info(value + " was selected in dropdown");
+            logger.info(value + " was selected in dropdown " + getElementName(element));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -63,7 +63,7 @@ public class ActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Element was clicked");
+            logger.info("Element was clicked " + getElementName(element));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -81,13 +81,13 @@ public class ActionsWithElements {
         try {
             boolean state = element.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info("Element is displayed " + getElementName(element));
             } else {
-                logger.info("Element is not displayed");
+                logger.info("Element is not displayed " + getElementName(element));
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed");
+            logger.info("Element is not displayed " + getElementName(element));
             return false;
         }
     }
@@ -100,6 +100,14 @@ public class ActionsWithElements {
         Assert.assertFalse("Element is displayed", isElementDisplayed(element));
     }
 
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element. " + e);
         // If we can not work with element, we do not need to continue our test
@@ -109,7 +117,7 @@ public class ActionsWithElements {
     public void checkIfElementContainsText(WebElement element, String text) {
         try {
             Assert.assertTrue("Text is not found", element.getText().contains(text));
-            logger.info("Text is found");
+            logger.info("Text is found in " + getElementName(element));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

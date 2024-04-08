@@ -79,6 +79,25 @@
       <artifactId>allure-junit4</artifactId>
       <version>2.8.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>5.4.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20231013</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.9</version>
+    </dependency>
   </dependencies>
 
   <profiles>
@@ -99,11 +118,11 @@
             <version>3.0.0-M5</version>
             <configuration>
               <parallel>all</parallel>
+              <!-- <parallel>methods</parallel>-->
+              <!-- <parallel>classes</parallel>-->
               <argLine>-Xmx512m</argLine>
               <argLine>-XX:MaxPermSize=256m</argLine>
               <threadCount>1</threadCount>
-              <!-- <parallel>methods</parallel>-->
-              <!-- <parallel>classes</parallel>-->
               <testFailureIgnore>true</testFailureIgnore>
               <rerunFailingTestsCount>0</rerunFailingTestsCount>
               <argLine>

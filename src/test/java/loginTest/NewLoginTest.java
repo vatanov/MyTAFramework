@@ -1,9 +1,10 @@
 package loginTest;
 
-import libs.ConfigProperties;
+import categories.SmokeTestFilter;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
@@ -11,8 +12,9 @@ import java.util.Map;
 import static data.TestData.LOGIN_DEFAULT;
 import static data.TestData.PASSWORD_DEFAULT;
 
-public class LoginTestV2 extends baseTest.BaseTest{
+public class NewLoginTest extends baseTest.BaseTest{
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLoginTest() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().getHeader().clickLoginButton();

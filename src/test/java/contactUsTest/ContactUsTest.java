@@ -1,9 +1,11 @@
 package contactUsTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 /*
@@ -14,6 +16,7 @@ import org.junit.runner.RunWith;
 
 // This annotation @RunWith is used to run the same test with different parameters
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class ContactUsTest extends BaseTest {
     final static String ERROR = "Please fill all the fields !";
     final static String EMAIL = "user@test.com";

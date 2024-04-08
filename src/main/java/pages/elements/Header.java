@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,58 +42,72 @@ public class Header extends ActionsWithElements {
         super(webDriver);
     }
 
+    @Step
     public void checkIsLogoDisplayed() {
         checkElementDisplayed(logo);
     }
 
+    @Step
     public void checkIsHomeButtonDisplayed() {
         checkElementDisplayed(homeButton);
     }
 
+    @Step
     public void checkIsAboutButtonDisplayed() {
         checkElementDisplayed(aboutButton);
     }
 
+    @Step
     public void checkIsContactButtonDisplayed() {
         checkElementDisplayed(contactButton);
     }
 
+    @Step
     public void checkIsHelpButtonDisplayed() {
         checkElementDisplayed(helpButton);
     }
 
+    @Step
     public void checkIsLoginButtonDisplayed() {
         checkElementDisplayed(loginButton);
     }
 
+    @Step
     public void checkIsLoginButtonNotDisplayed() {
        checkElementNotDisplayed(loginButton);
     }
 
+    @Step
     public void checkIsRegisterButtonDisplayed() {
         checkElementDisplayed(registerButton);
     }
 
+    @Step
     public void checkIsDropdownMenuDisplayed() {
         checkElementDisplayed(dropdownMenu);
     }
 
+    @Step
     public void clickHomeButton() {
         clickOnElement(homeButton);
     }
 
+    @Step
     public void clickAboutButton() {
         clickOnElement(aboutButton);
     }
 
+    @Step
     public void clickContactButton() {
         clickOnElement(contactButton);
     }
 
+    @Step
     public void clickHelpButton() {
         clickOnElement(helpButton);
     }
 
+    @Step
     public void clickLoginButton() {
         clickOnElement(loginButton);
     }
@@ -101,16 +116,19 @@ public class Header extends ActionsWithElements {
         clickOnElement(registerButton);
     }
 
+    @Step
     public Header clickDropdownMenu() {
         clickOnElement(dropdownMenu);
         return this;
     }
 
+    @Step
     public PatientDashboardPage clickYourDashboard() {
         clickOnElement(yourDashboard);
         return new PatientDashboardPage(webDriver);
     }
 
+    @Step
     public void clickLogout() {
         clickOnElement(logoutButton);
     }

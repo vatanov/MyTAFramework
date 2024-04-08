@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class LoginTest {
+public class OldLoginTest {
     // Create webDriver instance
     WebDriver webDriver;
     String url = "http://192.168.64.3/doctorpatientportal/help.php";

@@ -20,7 +20,7 @@ public class ExchangeRatesTest {
 
     @Test
     public void getExchangeRates() {
-    dateParam.put("date","01.12.2014");
+    dateParam.put("date",PBTestData.DATE);
         ExchangeRatesDto responseAsDto = given()
                 .contentType(ContentType.JSON)
                 .log().all()
@@ -36,7 +36,9 @@ public class ExchangeRatesTest {
 
         ExchangeRatesDto expectedExchangeRatesDto = PBTestData.getExchangeRatesDto();
 
-        Assert.assertEquals("Number of currencies: ", expectedExchangeRatesDto.getExchangeRate().length, responseAsDto.getExchangeRate().length);
+        Assert.assertEquals("Number of currencies: ",
+                expectedExchangeRatesDto.getExchangeRate().length,
+                responseAsDto.getExchangeRate().length);
 
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(responseAsDto.getDate()).isEqualTo(expectedExchangeRatesDto.getDate());

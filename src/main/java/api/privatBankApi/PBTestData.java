@@ -4,9 +4,9 @@ import api.privatBankApi.pbResponseDto.CurrencyDto;
 import api.privatBankApi.pbResponseDto.ExchangeRatesDto;
 
 public class PBTestData {
-    private static final String DATE = "01.12.2014";
+    public static final String DATE = "01.12.2014";
     private static final String BANK = "PB";
-    private static final int UAH_CODE = 980;
+    private static final Integer UAH_CODE = 980;
     private static final String UAH = "UAH";
 
     private static final CurrencyDto[] CURRENCIES = {

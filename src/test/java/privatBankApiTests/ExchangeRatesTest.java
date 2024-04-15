@@ -1,9 +1,11 @@
 package privatBankApiTests;
 
+import api.EndPoints;
 import api.privatBankApi.PBEndPoints;
 import api.privatBankApi.PBTestData;
 import api.privatBankApi.pbResponseDto.ExchangeRatesDto;
 import io.restassured.http.ContentType;
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ExchangeRatesTest {
     public Map<String, String> dateParam = new HashMap<String, String>();
@@ -54,4 +57,20 @@ public class ExchangeRatesTest {
 
         softAssertions.assertAll();
     }
+
+    @Test
+    public void getExchangeRatesSchemaTest() {
+        dateParam.put("date",PBTestData.DATE);
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .queryParams(dateParam)
+                .get(PBEndPoints.EXCHANGE_RATES)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("pbResponse.json"));
+    }
+
 }

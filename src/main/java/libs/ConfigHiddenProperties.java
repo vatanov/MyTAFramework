@@ -6,5 +6,6 @@ import org.aeonbits.owner.Config;
 public interface ConfigHiddenProperties extends Config {
     String login_default();
     String password_default();
+    String api_token();
 
 }

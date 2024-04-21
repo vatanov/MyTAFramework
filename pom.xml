@@ -117,6 +117,12 @@
       <version>5.4.0</version>
       <scope>compile</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-rest-assured</artifactId>
+      <version>2.21.0</version>
+    </dependency>
   </dependencies>
 
   <profiles>
@@ -136,8 +142,8 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.0.0-M5</version>
             <configuration>
-              <parallel>all</parallel>
-              <!-- <parallel>methods</parallel>-->
+              <!-- <parallel>all</parallel>-->
+              <parallel>methods</parallel>
               <!-- <parallel>classes</parallel>-->
               <argLine>-Xmx512m</argLine>
               <argLine>-XX:MaxPermSize=256m</argLine>

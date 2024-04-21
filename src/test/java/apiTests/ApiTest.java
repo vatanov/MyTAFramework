@@ -5,6 +5,7 @@ import api.EndPoints;
 import api.dto.responseDto.BookDto;
 import api.dto.responseDto.UsersBooksDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import libs.ConfigHiddenProperties;
@@ -30,11 +31,11 @@ public class ApiTest {
     @Test
     public void getBooksTest() {
         UsersBooksDto responseAsDto = given()
+                .filter(new AllureRestAssured())
                 .headers(
                         "accept", ContentType.JSON,
                         "Authorization", "Bearer " + token
                 )
-                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
                 .get(EndPoints.BOOKS_BY_USER, ConfigProvider.configHiddenProperties.user_id())  // URL
@@ -109,6 +110,7 @@ public class ApiTest {
 //        }
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -124,11 +126,11 @@ public class ApiTest {
     @Test
     public void getBooksPathTest() {
         Response response = given()
+                .filter(new AllureRestAssured())
                 .headers(
                         "accept", ContentType.JSON,
                         "Authorization", "Bearer " + token
                 )
-                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
                 .get(EndPoints.BOOKS_BY_USER, ConfigProvider.configHiddenProperties.user_id())  // URL
@@ -157,11 +159,11 @@ public class ApiTest {
     @Test
     public void getBooksSchemaTest() {
         given()
+                .filter(new AllureRestAssured())
                 .headers(
                         "accept", ContentType.JSON,
                         "Authorization", "Bearer " + token
                 )
-                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
                 .get(EndPoints.BOOKS_BY_USER, ConfigProvider.configHiddenProperties.user_id())  // URL

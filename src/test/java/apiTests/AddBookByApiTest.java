@@ -6,6 +6,7 @@ import api.dto.requestDto.AddBookDto;
 import api.dto.requestDto.IsbnDto;
 import api.dto.responseDto.BookDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import libs.ConfigProvider;
 import org.assertj.core.api.SoftAssertions;
@@ -34,6 +35,7 @@ public class AddBookByApiTest {
 
         String response =
                 given()
+                        .filter(new AllureRestAssured())
                         .headers(
                                 "accept", ContentType.JSON,
                                 "Authorization", "Bearer " + token

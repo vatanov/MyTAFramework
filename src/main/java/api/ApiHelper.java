@@ -45,7 +45,8 @@ public class ApiHelper {
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody();
-        return responseBody.jsonPath().get("token").toString();
+        String token = responseBody.jsonPath().get("token").toString();
+        return null != token ? token : "0";
     }
 
     /**

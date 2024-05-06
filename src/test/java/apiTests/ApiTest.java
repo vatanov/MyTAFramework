@@ -1,10 +1,14 @@
 package apiTests;
 
+import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.BookDto;
 import api.dto.responseDto.UsersBooksDto;
+import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import libs.ConfigHiddenProperties;
 import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -20,20 +24,21 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
 public class ApiTest {
-    final String USER_ID = "e7faf904-e52e-43bd-b4d1-17c2eeb39a6d";
     Logger logger = Logger.getLogger(getClass());
+    ApiHelper apiHelper = new ApiHelper();
+    String token = apiHelper.getToken();
 
     @Test
     public void getBooksTest() {
         UsersBooksDto responseAsDto = given()
+                .filter(new AllureRestAssured())
                 .headers(
                         "accept", ContentType.JSON,
-                        "Authorization", "Bearer " + ConfigProvider.configHiddenProperties.api_token()
+                        "Authorization", "Bearer " + token
                 )
-                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
-                .get(EndPoints.BOOKS_BY_USER, USER_ID)  // URL
+                .get(EndPoints.BOOKS_BY_USER, ConfigProvider.configHiddenProperties.user_id())  // URL
                 .then()
                 .statusCode(200)
                 .log().all()
@@ -51,23 +56,11 @@ public class ApiTest {
 
         // Add asserts
         // Simple assert
-        Assert.assertEquals("User ID is not expected.", USER_ID, responseAsDto.getUserId());
+        Assert.assertEquals("User ID is not expected.", ConfigProvider.configHiddenProperties.user_id(), responseAsDto.getUserId());
 
         // Complex asserts
         BookDto[] expectedBooksDto = {
-                BookDto.builder()
-                        .isbn("9781449325862")
-                        .title("Git Pocket Guide")
-                        .subTitle("A Working Introduction")
-                        .author("Richard E. Silverman")
-                        .publisher("O'Reilly Media")
-                        .pages(234)
-                        .description("This pocket guide is the perfect on-the-job companion to Git, the distributed " +
-                                "version control system. It provides a compact, readable introduction to Git for " +
-                                "new users, as well as a reference to common commands and procedures for " +
-                                "those of you with Git exp")
-                        .build()
-
+                TestData.bookGitPocketGuide
 
 //                new BookDto(
 //                        "9781449325862",
@@ -79,7 +72,7 @@ public class ApiTest {
 //                        "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp")
         };
         UsersBooksDto expectedUserBooksDto = UsersBooksDto.builder()
-                .userId(USER_ID)
+                .userId(ConfigProvider.configHiddenProperties.user_id())
                 .username("vova")
                 .books(expectedBooksDto)
                 .build();
@@ -117,6 +110,7 @@ public class ApiTest {
 //        }
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -132,14 +126,14 @@ public class ApiTest {
     @Test
     public void getBooksPathTest() {
         Response response = given()
+                .filter(new AllureRestAssured())
                 .headers(
                         "accept", ContentType.JSON,
-                        "Authorization", "Bearer " + ConfigProvider.configHiddenProperties.api_token()
+                        "Authorization", "Bearer " + token
                 )
-                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
-                .get(EndPoints.BOOKS_BY_USER, USER_ID)  // URL
+                .get(EndPoints.BOOKS_BY_USER, ConfigProvider.configHiddenProperties.user_id())  // URL
                 .then()
                 .statusCode(200)
                 .extract().response();
@@ -165,14 +159,14 @@ public class ApiTest {
     @Test
     public void getBooksSchemaTest() {
         given()
+                .filter(new AllureRestAssured())
                 .headers(
                         "accept", ContentType.JSON,
-                        "Authorization", "Bearer " + ConfigProvider.configHiddenProperties.api_token()
+                        "Authorization", "Bearer " + token
                 )
-                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
-                .get(EndPoints.BOOKS_BY_USER, USER_ID)  // URL
+                .get(EndPoints.BOOKS_BY_USER, ConfigProvider.configHiddenProperties.user_id())  // URL
                 .then()
                 .statusCode(200)
                 .log().all()
